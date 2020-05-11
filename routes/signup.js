@@ -1,4 +1,9 @@
-const signup = function(req, res) {
-  res.status(200).send('가입신청이 요청됐습니다.');
+const { User } = require('../models/index')
+
+const signup = async function(req, res) {
+  // console.log('what is the req.body', req.body)
+  const { name, email, password } = req.body;
+  await User.create({ name, email, password });
+  res.status(200).send({ name, email, password });
 }
 module.exports = signup;
