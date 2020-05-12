@@ -2,12 +2,25 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+// const cookieParser = require('cookie-parser')
 
 const signupRoute = require('./routes/signup');
 const signinRoute = require('./routes/signin');
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.set('trust proxy', 1); // trust first proxy
+app.use(session({
+  secret: 'secretedstring',
+  resave: false,
+  saveUninitialized: true,
+  name: 'sessionId',
+  // cookie: { secure: true }
+}));
+
+// app.use(cookieParser());
 
 app.use('/signup', signupRoute);
 app.use('/signin', signinRoute);
