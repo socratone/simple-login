@@ -1,8 +1,6 @@
-const { User } = require('../models/index');
-
 const info = async function(req, res) {
-  if(req.session.key === 'temporaryReceivedSessionId') {
-    res.send('사용자의 정보를 보여 드리겠습니다.')
+  if(req.session.name) {
+    res.send(`${req.session.name}님이 로그인 돼 있습니다.`)
   } else {
     res.send('사용자가 아닙니다.')
   }
