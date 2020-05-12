@@ -1,0 +1,1 @@
+express에서 cookie, session을 사용하는 기본적인 방법을 다뤘다.
